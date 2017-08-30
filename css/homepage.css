@@ -10,14 +10,21 @@ html,body{
     overflow: hidden;
 }
 #box{
+    width:400%;
     height:100%;
+    margin-left: 0;
+    transition: 1s;
     background:url("../images/bg.jpg") center center/cover;
+}
+#box.left{
+    margin-left: -100%;
 }
 
 
 /*展示区的样式*/
 #main{
-    width:100%;
+    float: left;
+    width:25%;
     height: 100%;
     position: relative;
 }
@@ -35,7 +42,6 @@ html,body{
     transform-style: preserve-3d;
     width: 120px;
     height: 160px;
-    border:1px solid red;
 }
 #show ul li{
     position: absolute;
@@ -47,6 +53,36 @@ html,body{
     border:1px solid rgba(11,252,255,.8);
     box-shadow:  0 0 12px rgba(11,252,255,.8);
     transition: 1.5s cubic-bezier(.89,.11,.17,.99);
+    text-align: center;
+}
+#show ul li .liCover{
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    z-index: 9;
+    width: 122px;
+    height: 162px;
+}
+#show ul li .liTitle{
+    font-size: 50px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(0,255,255,0.5);
+}
+#show ul li .liAuthor{
+    margin-top: 10px;
+    font-weight: bold;
+    color: rgba(127,255,255,0.75);
+    font-size: 24px;
+    text-shadow: 0 0 5px rgba(0,255,255,0.5);
+}
+#show ul li .liTime{
+    margin-top: 10px;
+    font-weight: bold;
+    color: rgba(127,255,255,0.75);
+    font-size: 14px;
+    text-shadow: 0 0 5px rgba(0,255,255,0.5);
 }
 
 /*左下角的按钮*/
@@ -156,4 +192,27 @@ html,body{
     color: #fff;
     font-weight: bold;
     font-size: 14px;
+}
+
+
+/*框架和后退按钮样式*/
+#back{
+    position: absolute;
+    right: -70px;
+    bottom: 20px;
+    z-index: 99999999;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid rgba(255, 108, 239, .8);
+    color: #ffffff;
+    padding:0 10px;
+    font-size: 12px;
+    font-weight:bold;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#frame{
+    float: left;
+    width:25%;
+    height:100%;
 }

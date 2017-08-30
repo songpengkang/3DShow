@@ -7,7 +7,7 @@
 var flyData = [
     {
         type : "Css3",
-        author : "阿飞",
+        author : "阿三",
         title : "我感觉你是在为难我胖虎",
         dec : "这大概是最屌的案例了……",
         time : "2017-05-02",

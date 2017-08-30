@@ -15,6 +15,12 @@
                 startTranslateX = Math.random()*6000-3000,
                 startTranslateY = Math.random()*6000-3000,
                 startTranslateZ = Math.random()*6000-3000;
+            var d = flyData[i] || flyData[0];
+            oLi.innerHTML = "<b class='liCover'></b>" +
+                "<p class='liTitle'>"+d.type+"</p>" +
+                "<p class='liAuthor'>"+d.author+"</p>" +
+                "<p class='liTime'>"+d.time+"</p>";
+            oLi.index = i;
             oUl.appendChild(oLi);
             oLi.x = i % 5 ;
             oLi.y = Math.floor(i%25/5);
@@ -146,8 +152,6 @@
                 oUl.style.transform = "translateZ("+startTranslateZ+"px) rotateX("+endRotateX+"deg) rotateY("+endRotateY+"deg)"
             };
             this.onmouseup = function () {
-                console.log(changeMoveX);
-
                 function guanxing() {
                     changeMoveX *= 0.9;
                     changeMoveY *= 0.9;
@@ -194,19 +198,40 @@
     })();
 //弹窗事件
     (function () {
-        var oAlert = document.getElementById("alert");
+        var oAlert = document.getElementById("alert"),
+            oATitle = oAlert.getElementsByClassName("title")[0].getElementsByTagName("span")[0],
+            oAImg = oAlert.getElementsByClassName("img")[0].getElementsByTagName("img")[0],
+            oAAuthor = oAlert.getElementsByClassName("author")[0].getElementsByTagName("span")[0],
+            oAInfo = oAlert.getElementsByClassName("info")[0].getElementsByTagName("span")[0],
+            oBack = document.getElementById("back"),
+            oBox = document.getElementById("box");
         oUl.onclick = function (e) {
             var target = e.target;
-            if (/li/i.test(target.nodeName)){
+            if (/b/i.test(target.nodeName)){
+                var index = target.parentNode.index,
+                    d = flyData[index]||flyData[0];
+                oAlert.index = index;
+                oATitle.innerHTML = "课题：" + d.title;
+                oAImg.src = "../works/" + d.src + "/index.png";
+                oAAuthor.innerHTML = "作者：" + d.author;
+                oAInfo.innerHTML = "描述：" + d.dec;
                 show();
             }
             e.cancelBubble = true;
         };
         oAlert.onclick = function (e) {
+            var d = flyData[this.index] || flyData[0],
+                oFrame = document.getElementById("frame");
+            oFrame.src = "../works/" + d.src + "/index.html";
+            oBox.className = "left";
             e.cancelBubble = true;
         };
         document.onclick = function () {
             hide();
+        };
+        oBack.onclick = function () {
+            oAlert.style.display = "none";
+            oBox.className = "";
         };
     // 弹出层显示
         function show() {
